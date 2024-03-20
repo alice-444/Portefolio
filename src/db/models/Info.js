@@ -8,14 +8,23 @@ const MeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  profileImage: {
+    type: String,
+    default: "",
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  profileImage: {
-    type: String,
-    default: "",
+  phone: {
+    type: Number,
+    required: true,
+    unique: true,
   },
   skills: [SkillSchema],
   projects: [ProjectSchema],

@@ -1,54 +1,72 @@
 import Link from "next/link";
+import { MdWork } from "react-icons/md";
+import { TbSchool, TbUserFilled } from "react-icons/tb";
+import { LuComponent } from "react-icons/lu";
+import { AiFillProject } from "react-icons/ai";
+
+const links = [
+  {
+    href: "/dashboard/data/",
+    text: "View about me",
+    icon: <TbUserFilled className="h-8 w-8" />,
+  },
+  {
+    href: "/data",
+    text: "View skill(s)",
+    icon: <LuComponent className="h-8 w-8" />,
+  },
+  {
+    href: "/data",
+    text: "View project(s)",
+    icon: <AiFillProject className="h-8 w-8" />,
+  },
+  {
+    href: "/data",
+    text: "View education(s)",
+    icon: <TbSchool className="h-8 w-8" />,
+  },
+  {
+    href: "/data",
+    text: "View experience(s)",
+    icon: <MdWork className="h-8 w-8" />,
+  },
+];
 
 const Dashboard = () => {
   return (
     <main>
-      <header className="bg-white">
-        <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <div className="text-center sm:text-left">
-              <h1 className="text-3xl font-bold text-azure-radiance-300 sm:text-3xl">
-                Welcome Back,{" "}
-                <span className="text-azure-radiance-400">hehehe</span> !
-              </h1>
-              <p className="text-gray-500 mt-1.5 text-md max-w-lg">
-                View all about your information, ... Also manage and add data.
-              </p>
-            </div>
-
-            <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+      <header className="bg-white mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="sm:flex sm:items-center sm:justify-between text-center sm:text-left">
+          <div>
+            <h1 className="text-3xl font-bold text-azure-radiance-300 sm:text-3xl">
+              Welcome Back,{" "}
+              <span className="text-azure-radiance-400">hehehe</span> !
+            </h1>
+            <p className="text-gray-500 mt-1.5 text-md max-w-lg">
+              View all about your information, ...
+            </p>
+            <p className="text-gray-500 mt-1.5 text-md max-w-lg">
+              Also manage and add data.
+            </p>
+          </div>
+          <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+            {links.map((link, index) => (
               <Link
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 hover:bg-red-50 px-5 py-3 text-gray-500 transition hover:text-red-400 hover:border-red-300 focus:outline-none focus:ring"
-                href={"/books"}
+                key={index}
+                href={link.href}
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-300 px-5 py-3 text-red-300 transition hover:border-azure-radiance-400 hover:text-azure-radiance-400 focus:outline-none focus:ring"
               >
-                <span className="text-md font-medium"> View ?? </span>
-                {/* <GiBlackBook className="h-6 w-6" /> */}
+                <span className="text-md font-medium">{link.text}</span>
+                {link.icon}
               </Link>
-
-              <button
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-300 hover:bg-red-50 px-5 py-3 text-red-300 transition hover:text-red-400 focus:outline-none focus:ring"
-                type="button"
-              >
-                <span className="text-md font-medium"> View ?? </span>
-                {/* <MdOutlineShoppingBag className="h-6 w-6" /> */}
-              </button>
-
-              <button
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-300 hover:bg-red-50 px-5 py-3 text-red-300 transition hover:text-red-400 focus:outline-none focus:ring"
-                type="button"
-              >
-                <span className="text-md font-medium"> View ?? </span>
-                {/* <MdOutlineShoppingBag className="h-6 w-6" /> */}
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </header>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
-        <div className="h-32 rounded-lg bg-gray-200"></div>
-        <div className="h-32 rounded-lg bg-gray-200"></div>
-        <div className="h-32 rounded-lg bg-gray-200"></div>
-        <div className="h-32 rounded-lg bg-gray-200"></div>
+        {[...Array(4)].map((_, index) => (
+          <div key={index} className="h-32 rounded-lg bg-gray-200"></div>
+        ))}
       </div>
     </main>
   );

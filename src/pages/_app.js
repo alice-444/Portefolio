@@ -6,7 +6,7 @@ const inter = Ubuntu({ subsets: ["latin"], weight: "400" });
 const App = ({ Component, pageProps }) => {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-20 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center justify-between p-16 ${inter.className}`}
     >
       <Component {...pageProps} />;
     </main>
