@@ -1,4 +1,4 @@
-import Info from "@/db/models/Info.js";
+import Me from "@/db/models/Info.js";
 import MongooseConnect from "@/db/mongoose.js";
 
 export default async function handle(req, res) {
@@ -33,7 +33,7 @@ async function handlePost(req, res) {
   try {
     const {} = req.body;
 
-    const infoDoc = await Info.create({});
+    const infoDoc = await Me.create({});
 
     res.status(201).json(infoDoc);
   } catch (error) {
@@ -44,7 +44,7 @@ async function handlePost(req, res) {
 async function handleGet(req, res) {
   try {
     if (req.query?.id) {
-      const info = await Info.findById(req.query.id);
+      const info = await Me.findById(req.query.id);
 
       if (!info) {
         return res.status(404).json({ error: "Information not found" });
@@ -52,7 +52,7 @@ async function handleGet(req, res) {
 
       res.json(info);
     } else {
-      const infos = await Info.find();
+      const infos = await Me.find();
       res.json(infos);
     }
   } catch (error) {
@@ -64,12 +64,12 @@ async function handlePut(req, res) {
   try {
     const { _id } = req.body;
 
-    const existingInfo = await Info.findById(_id);
+    const existingInfo = await Me.findById(_id);
 
     if (!existingInfo) {
       return res.status(404).json({ error: "Information not found" });
     }
-    await Info.updateOne({ _id }, {});
+    await Me.updateOne({ _id }, {});
 
     res.status(200).json({ message: "Information updated successfully" });
   } catch (error) {
@@ -81,13 +81,13 @@ async function handleDelete(req, res) {
   try {
     const infoId = req.query?.id;
     if (infoId) {
-      const infoToDelete = await Info.findById(infoId);
+      const infoToDelete = await Me.findById(infoId);
 
       if (!infoToDelete) {
         return res.status(404).json({ error: "Information not found" });
       }
 
-      await Info.deleteOne({ _id: infoId });
+      await Me.deleteOne({ _id: infoId });
       res.status(200).json({ message: "Information deleted successfully" });
     } else {
       res.status(400).json({ error: "Missing information ID in the request" });
