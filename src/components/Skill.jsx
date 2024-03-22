@@ -18,9 +18,9 @@ const Skill = ({ _id, name: existingName, level: existingLevel }) => {
     };
 
     if (_id) {
-      await axios.put("/api/skill", { ...data, _id });
+      await axios.put("/api/skill/route", { ...data, _id });
     } else {
-      await axios.post("/api/skill", data);
+      await axios.post("/api/skill/route", data);
     }
 
     setRedirect(true);
@@ -58,10 +58,10 @@ const Skill = ({ _id, name: existingName, level: existingLevel }) => {
               htmlFor="example1"
               class="mb-1 block text-lg font-medium text-gray-700 py-1"
             >
-              Email
+              Level
             </label>
             <input
-              type="email"
+              type="text"
               id="example1"
               class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
               placeholder="Enter email"

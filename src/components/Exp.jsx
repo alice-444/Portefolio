@@ -22,7 +22,7 @@ const Info = ({
   const [companyLogo, setCompanyLogo] = useState(existingCompanyLogo || []);
   const [location, setLocation] = useState(existingLocation || "");
   const [startDate, setStartDate] = useState(existingStartDate || "");
-  const [endDate, setEndDate] = useState(existingStartDate || "");
+  const [endDate, setEndDate] = useState(existingEndDate || "");
   const [tasks, setTasks] = useState(existingTasks || "");
 
   const createExp = async (ev) => {
@@ -37,9 +37,9 @@ const Info = ({
     };
 
     if (_id) {
-      await axios.put("/api/experience", { ...data, _id });
+      await axios.put("/api/experience/route", { ...data, _id });
     } else {
-      await axios.post("/api/experience", data);
+      await axios.post("/api/experience/route", data);
     }
 
     setRedirect(true);

@@ -1,15 +1,16 @@
 import axios from "axios";
 import Link from "next/link";
+import { GoTrash } from "react-icons/go";
 import { useEffect, useState } from "react";
 import { FiEdit3, FiPlusCircle } from "react-icons/fi";
 
 const Me = () => {
   const [datas, setDatas] = useState([]);
-  // useEffect(() => {
-  //   axios.get("/api/infoPerso").then((res) => {
-  //     setDatas(res.data)
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios.get("/api/infoPerso/route").then((res) => {
+      setDatas(res.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -28,7 +29,7 @@ const Me = () => {
             <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
               <Link
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-300 px-5 py-3 text-red-300 transition hover:border-azure-radiance-400 hover:text-azure-radiance-400 focus:outline-none focus:ring"
-                href={"/dashboard/addData"}
+                href={"/dashboard/me/addData"}
               >
                 <span className="text-md font-medium">add Data</span>
                 <FiPlusCircle className="h-4 w-4" />
@@ -68,12 +69,6 @@ const Me = () => {
                     scope="col"
                     className="px-6 py-4 font-medium text-gray-900"
                   >
-                    Email
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
                     Phone
                   </th>
                 </tr>
@@ -86,7 +81,6 @@ const Me = () => {
                 >
                   <tr className="hover:bg-gray-50">
                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-                      <div className="relative h-2 w-2">{index + 1}</div>
                       <div className="text-sm">
                         <div className="font-medium text-gray-700">
                           {data.username}
@@ -94,28 +88,26 @@ const Me = () => {
                         <div className="text-gray-400">{data.email}</div>
                       </div>
                     </th>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-400">
-                        {data.author}
-                      </span>
-                    </td>
+                    <td className="px-6 py-4">{data.images}</td>
                     <td className="px-6 py-4 truncate max-w-sx">
                       {data.description}
                     </td>
-                    <td className="px-6 py-4">{book.images}</td>
-                    <td className="px-6 py-4">{book.editor}</td>
+                    <td className="px-6 py-4 truncate max-w-sx">
+                      {data.phone}
+                    </td>
+
                     <td className="px-6 py-4">
                       <td className="flex justify-end gap-4 px-6 py-4 font-xl">
                         <Link
-                          className="text-red-400 h-5 w-5"
-                          href={"/books/delete/" + data._id}
+                          className="text-red-400  h-8 w-8"
+                          href={"/dashboard/me/delete/" + data._id}
                         >
                           {" "}
                           <GoTrash />
                         </Link>
                         <Link
-                          className="text-red-400 h-5 w-5"
-                          href={"/dashboard/edit/" + data._id}
+                          className="text-red-400 h-8 w-8"
+                          href={"/dashboard/me/edit/" + data._id}
                         >
                           <FiEdit3 />
                         </Link>

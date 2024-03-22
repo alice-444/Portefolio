@@ -20,9 +20,9 @@ const Project = ({
     };
 
     if (_id) {
-      await axios.put("/api/projects", { ...data, _id });
+      await axios.put("/api/projects/route", { ...data, _id });
     } else {
-      await axios.post("/api/projects", data);
+      await axios.post("/api/projects/route", data);
     }
 
     setRedirect(true);

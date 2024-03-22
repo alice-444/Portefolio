@@ -61,44 +61,42 @@ const Project = () => {
                 </tr>
               </thead>
 
-              {projects.map((project, index) => (
+              {projects.map((data, index) => (
                 <tbody
                   className="divide-y divide-gray-100 border-t border-gray-100"
-                  key={project._id}
+                  key={data._id}
                 >
                   <tr className="hover:bg-gray-50">
                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                       <div className="relative h-2 w-2">{index + 1}</div>
                       <div className="text-sm">
                         <div className="font-medium text-gray-700">
-                          {project.title}
+                          {data.title}
                         </div>
-                        <div className="text-gray-400">
-                          {project.description}
-                        </div>
+                        <div className="text-gray-400">{data.description}</div>
                       </div>
                     </th>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-400">
-                        {project.title}
+                        {data.title}
                       </span>
                     </td>
                     <td className="px-6 py-4 truncate max-w-sx">
-                      {project.description}
+                      {data.description}
                     </td>
 
                     <td className="px-6 py-4">
                       <td className="flex justify-end gap-4 px-6 py-4 font-xl">
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/data/delete/" + project_id}
+                          href={"/dashboard/projects/delete/" + project_id}
                         >
                           {" "}
                           <GoTrash />
                         </Link>
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/data/edit/" + project._id}
+                          href={"/dashboard/projects/edit/" + project._id}
                         >
                           <FiEdit3 />
                         </Link>

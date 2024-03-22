@@ -3,13 +3,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiEdit3, FiPlusCircle } from "react-icons/fi";
 
-const Skills = () => {
-  const [skills, setSkills] = useState([]);
-  // useEffect(() => {
-  //   axios.get("/api/infoPerso").then((res) => {
-  //     setDatas(res.data)
-  //   })
-  // }, [])
+const Education = () => {
+  const [edu, setEdu] = useState([]);
+  useEffect(() => {
+    axios.get("/api/education").then((res) => {
+      setEdu(res.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -18,19 +18,19 @@ const Skills = () => {
           <div className="sm:flex sm:items-center sm:justify-between">
             <div className="text-center sm:text-left">
               <h1 className="text-3xl font-bold text-azure-radiance-400 sm:text-3xl">
-                Skills
+                Education
               </h1>
               <p className="text-gray-500 mt-1.5 text-md max-w-lg">
-                Let's add skill !
+                Let's add education !
               </p>
             </div>
 
             <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
               <Link
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-300 px-5 py-3 text-red-300 transition hover:border-azure-radiance-400 hover:text-azure-radiance-400 focus:outline-none focus:ring"
-                href={"/dashboard/data/skills/addSkill"}
+                href={"/dashboard/education/addEdu"}
               >
-                <span className="text-md font-medium">add Skill</span>
+                <span className="text-md font-medium">add Edu</span>
                 <FiPlusCircle className="h-4 w-4" />
               </Link>
             </div>
@@ -39,7 +39,7 @@ const Skills = () => {
       </header>
       <hr className="my-1 h-px border-0 bg-gray-300" />
       <div className="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 sm:py-12 lg:px-8 overflow-x-auto">
-        {skills.length === 0 ? (
+        {edu.length === 0 ? (
           <p className="text-gray-700 font-semibold">No data found</p>
         ) : (
           <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md">
@@ -50,18 +50,42 @@ const Skills = () => {
                     scope="col"
                     className="px-6 py-4 font-medium text-gray-900"
                   >
-                    Name
+                    Title
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-4 font-medium text-gray-900"
                   >
-                    level
+                    Courses
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Logo
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Description
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Start Date
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    End Date
                   </th>
                 </tr>
               </thead>
 
-              {skills.map((data, index) => (
+              {edu.map((data, index) => (
                 <tbody
                   className="divide-y divide-gray-100 border-t border-gray-100"
                   key={data._id}
@@ -71,9 +95,13 @@ const Skills = () => {
                       <div className="relative h-2 w-2">{index + 1}</div>
                       <div className="text-sm">
                         <div className="font-medium text-gray-700">
-                          {data.name}
+                          {data.title}
                         </div>
-                        <div className="text-gray-400">{data.level}</div>
+                        <div className="text-gray-400">{data.courses}</div>
+                        <div className="text-gray-400">{data.logo}</div>
+                        <div className="text-gray-400">{data.description}</div>
+                        <div className="text-gray-400">{data.startDate}</div>
+                        <div className="text-gray-400">{data.endDate}</div>
                       </div>
                     </th>
                     <td className="px-6 py-4">
@@ -81,22 +109,19 @@ const Skills = () => {
                         {data.name}
                       </span>
                     </td>
-                    <td className="px-6 py-4 truncate max-w-sx">
-                      {data.level}
-                    </td>
 
                     <td className="px-6 py-4">
                       <td className="flex justify-end gap-4 px-6 py-4 font-xl">
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/skills/delete/" + data._id}
+                          href={"/dashboard/education/delete/" + data._id}
                         >
                           {" "}
                           <GoTrash />
                         </Link>
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/me/edit/" + data._id}
+                          href={"/dashboard/education/edit/" + data._id}
                         >
                           <FiEdit3 />
                         </Link>
@@ -113,4 +138,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default Education;
