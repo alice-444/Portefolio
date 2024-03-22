@@ -64,39 +64,39 @@ const Skills = () => {
               {skills.map((data, index) => (
                 <tbody
                   className="divide-y divide-gray-100 border-t border-gray-100"
-                  key={skill._id}
+                  key={data._id}
                 >
                   <tr className="hover:bg-gray-50">
                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                       <div className="relative h-2 w-2">{index + 1}</div>
                       <div className="text-sm">
                         <div className="font-medium text-gray-700">
-                          {skill.name}
+                          {data.name}
                         </div>
-                        <div className="text-gray-400">{skill.level}</div>
+                        <div className="text-gray-400">{data.level}</div>
                       </div>
                     </th>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-400">
-                        {skill.name}
+                        {data.name}
                       </span>
                     </td>
                     <td className="px-6 py-4 truncate max-w-sx">
-                      {skill.level}
+                      {data.level}
                     </td>
 
                     <td className="px-6 py-4">
                       <td className="flex justify-end gap-4 px-6 py-4 font-xl">
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/skills/delete/" + skill._id}
+                          href={"/dashboard/skills/delete/" + data._id}
                         >
                           {" "}
                           <GoTrash />
                         </Link>
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/me/edit/" + skill._id}
+                          href={"/dashboard/me/edit/" + data._id}
                         >
                           <FiEdit3 />
                         </Link>

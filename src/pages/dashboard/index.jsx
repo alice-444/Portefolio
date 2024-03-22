@@ -6,27 +6,27 @@ import { AiFillProject } from "react-icons/ai";
 
 const links = [
   {
-    href: "/dashboard/data/me/",
+    href: "/dashboard/me/",
     text: "View about me",
     icon: <TbUserFilled className="h-8 w-8" />,
   },
   {
-    href: "/dashboard/data/skills/",
+    href: "/dashboard/skills/",
     text: "View skill(s)",
     icon: <LuComponent className="h-8 w-8" />,
   },
   {
-    href: "/data",
+    href: "/dashboard/projects/",
     text: "View project(s)",
     icon: <AiFillProject className="h-8 w-8" />,
   },
   {
-    href: "/data",
+    href: "/dashboard/education/",
     text: "View education(s)",
     icon: <TbSchool className="h-8 w-8" />,
   },
   {
-    href: "/data",
+    href: "/dashboard/experiences/",
     text: "View experience(s)",
     icon: <MdWork className="h-8 w-8" />,
   },
