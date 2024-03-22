@@ -4,36 +4,39 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 
-const Info = ({
+const Edu = ({
   _id,
-  username: existingUsername,
-  email: existingEmail,
-  images: existingImages,
+  title: existingTitle,
+  logo: existingLogo,
+  location: existingLocation,
+  startDate: existingStartDate,
+  endDate: existingEndDate,
   description: existingDescription,
-  phone: existingPhone,
 }) => {
   const [redirect, setRedirect] = useState(false);
   const router = useRouter();
 
-  const [username, setUsername] = useState(existingUsername || "");
-  const [email, setEmail] = useState(existingEmail || "");
-  const [images, setImages] = useState(existingImages || []);
+  const [title, setTitle] = useState(existingTitle || "");
+  const [logo, setLogo] = useState(existingLogo || []);
+  const [location, setLocation] = useState(existingLocation || "");
+  const [startDate, setStartDate] = useState(existingStartDate || "");
+  const [endDate, setEndDate] = useState(existingEndDate || "");
   const [description, setDescription] = useState(existingDescription || "");
-  const [phone, setPhone] = useState(existingPhone || "");
 
-  const createInfo = async (ev) => {
+  const createEducation = async (ev) => {
     const data = {
-      username,
-      email,
-      images,
+      title,
+      logo,
+      location,
+      startDate,
+      endDate,
       description,
-      phone,
     };
 
     if (_id) {
-      await axios.put("/api/infoPerso/route", { ...data, _id });
+      await axios.put("/api/education/route", { ...data, _id });
     } else {
-      await axios.post("/api/infoPerso/route", data);
+      await axios.post("/api/education/route", data);
     }
 
     setRedirect(true);
@@ -46,59 +49,22 @@ const Info = ({
 
   return (
     <div>
-      <form onSubmit={createInfo} className="mx-auto max-w-screen-sm">
+      <form onSubmit={createEducation} className="mx-auto max-w-screen-sm">
         <div className="my-4">
           <div>
             <label
               htmlFor="titleInput"
               class="mb-1 block text-lg font-medium text-gray-700 py-1"
             >
-              username
+              Title
             </label>
             <input
               type="text"
               id="titleInput"
               class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
               placeholder="Enter username"
-              value={username}
-              onChange={(ev) => setUsername(ev.target.value)}
-            />
-          </div>
-        </div>
-        <div className="my-4">
-          <div>
-            <label
-              htmlFor="example1"
-              class="mb-1 block text-lg font-medium text-gray-700 py-1"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="example1"
-              class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
-              placeholder="Enter email"
-              value={email}
-              onChange={(ev) => setEmail(ev.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="my-4">
-          <div>
-            <label
-              htmlFor="example1"
-              class="mb-1 block text-lg font-medium text-gray-700 py-1"
-            >
-              Phone
-            </label>
-            <input
-              type="text"
-              id="example1"
-              class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
-              placeholder="Enter phone number"
-              value={phone}
-              onChange={(ev) => setPhone(ev.target.value)}
+              value={title}
+              onChange={(ev) => setTitle(ev.target.value)}
             />
           </div>
         </div>
@@ -106,7 +72,7 @@ const Info = ({
         <div class="mx-auto my-4">
           <div class="mx-auto">
             <label class="mb-1 block text-lg font-medium text-gray-700 py-1">
-              Images
+              Logo
             </label>
             <label class="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-azure-radiance-300 p-6 transition-all hover:border-primary-300">
               <div class="space-y-1 text-center">
@@ -132,9 +98,66 @@ const Info = ({
                 className="hidden"
                 accept="image/*"
                 multiple
-                value={images}
+                value={logo}
               />
             </label>
+          </div>
+        </div>
+
+        <div className="my-4">
+          <div>
+            <label
+              htmlFor="example1"
+              class="mb-1 block text-lg font-medium text-gray-700 py-1"
+            >
+              location
+            </label>
+            <input
+              type="text"
+              id="example1"
+              class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
+              placeholder="Enter location"
+              value={location}
+              onChange={(ev) => setLocation(ev.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="my-4">
+          <div>
+            <label
+              htmlFor="example1"
+              class="mb-1 block text-lg font-medium text-gray-700 py-1"
+            >
+              Start date
+            </label>
+            <input
+              type="date"
+              id="example1"
+              class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
+              placeholder="Enter start date"
+              value={startDate}
+              onChange={(ev) => setStartDate(ev.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="my-4">
+          <div>
+            <label
+              htmlFor="example1"
+              class="mb-1 block text-lg font-medium text-gray-700 py-1"
+            >
+              End date
+            </label>
+            <input
+              type="date"
+              id="example1"
+              class="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
+              placeholder="Enter end date"
+              value={endDate}
+              onChange={(ev) => setEndDate(ev.target.value)}
+            />
           </div>
         </div>
 
@@ -157,12 +180,13 @@ const Info = ({
             />
           </div>
         </div>
+
         <div class="mx-auto my-4">
           <button
             className="inline-block rounded border border-red-300 px-12 py-3 text-semibold font-d text-red-300 hover:bg-azure-radiance-400 hover:border-azure-radiance-300 hover:text-white focus:outline-none focus:ring active:bg-green-500 w-full"
             type="submit"
           >
-            Add data
+            Add education
           </button>
         </div>
       </form>
@@ -170,4 +194,4 @@ const Info = ({
   );
 };
 
-export default Info;
+export default Edu;

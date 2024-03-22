@@ -8,7 +8,7 @@ const App = ({ Component, pageProps }) => {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-16 ${inter.className}`}
     >
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </main>
   );
 };

@@ -3,13 +3,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiEdit3, FiPlusCircle } from "react-icons/fi";
 
-const Skills = () => {
+const Exp = () => {
   const [exp, setExp] = useState([]);
-  // useEffect(() => {
-  //   axios.get("/api/infoPerso").then((res) => {
-  //     setDatas(res.data)
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios.get("/api/experiences").then((res) => {
+      setExp(res.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -103,14 +103,14 @@ const Skills = () => {
                       <td className="flex justify-end gap-4 px-6 py-4 font-xl">
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/skills/delete/" + data._id}
+                          href={"/dashboard/experiences/delete/" + data._id}
                         >
                           {" "}
                           <GoTrash />
                         </Link>
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/me/edit/" + data._id}
+                          href={"/dashboard/experiences/edit/" + data._id}
                         >
                           <FiEdit3 />
                         </Link>
@@ -127,4 +127,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default Exp;

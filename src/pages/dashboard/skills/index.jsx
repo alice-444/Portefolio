@@ -96,7 +96,7 @@ const Skills = () => {
                         </Link>
                         <Link
                           className="text-red-400 h-5 w-5"
-                          href={"/dashboard/me/edit/" + data._id}
+                          href={"/dashboard/skills/edit/" + data._id}
                         >
                           <FiEdit3 />
                         </Link>
