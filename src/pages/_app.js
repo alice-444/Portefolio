@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar.jsx";
 import "@/styles/globals.css";
 import { Ubuntu } from "next/font/google";
 
@@ -8,6 +9,7 @@ const App = ({ Component, pageProps }) => {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-16 ${inter.className}`}
     >
+      <Navbar />
       <Component {...pageProps} />
     </main>
   );
