@@ -31,9 +31,15 @@ export default async function handle(req, res) {
 
 async function handlePost(req, res) {
   try {
-    const {} = req.body;
+    const { username, email, profileImage, description, phone } = req.body;
 
-    const infoDoc = await Me.create({});
+    const infoDoc = await Me.create({
+      username,
+      email,
+      profileImage,
+      description,
+      phone,
+    });
 
     res.status(201).json(infoDoc);
   } catch (error) {
